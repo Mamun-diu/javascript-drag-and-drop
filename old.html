@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Drop</title>
+    <style>
+        body {
+            background: darkslateblue;
+        }
+
+        .imgBox {
+            background-image: url('logo.png');
+            position: relative;
+            height: 145px;
+            width: 145px;
+            top: 5px;
+            left: 5px;
+            background-size: 145px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            cursor: pointer;
+        }
+
+        .whiteBox {
+            height: 155px;
+            width: 155px;
+            border: 3px solid black;
+            background: white;
+            float: left;
+            margin: 10px;
+        }
+
+        .hold {
+            border: 3px solid red;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
+        .dashed{
+            background : rgb(194, 236, 5);
+            border : 2px dashed green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="whiteBox">
+        <div class="imgBox" draggable="true"></div>
+    </div>
+    <div class="whiteBox"></div>
+    <div class="whiteBox"></div>
+    <div class="whiteBox"></div>
+
+    <script>
+        const imgBox = document.querySelector('.imgBox');
+        const whiteBoxes = document.getElementsByClassName('whiteBox');
+
+        imgBox.addEventListener('dragstart', function () {
+            console.log('Drag Start Event Trigger');
+            this.style.border = "3px solid red";
+            this.classList.remove('dashed')
+            setTimeout(() => {
+                this.classList.add('hide');
+                this.classList.remove('show')
+
+            }, 1);
+
+        })
+        imgBox.addEventListener('dragend', function () {
+            console.log('Drag End Event Trigger');
+            setTimeout(() => {
+                this.classList.add('show');
+                this.classList.remove('hide');
+                this.style.border = 'none'
+            }, 1);
+
+        })
+
+        for (const whiteBox of whiteBoxes) {
+            whiteBox.addEventListener('dragover', function (e) {
+                console.log('Drag Over');
+                e.preventDefault();
+
+            })
+            whiteBox.addEventListener('dragenter', function () {
+                console.log('Drag Enter');
+                this.classList.add('dashed');
+
+            })
+            whiteBox.addEventListener('dragleave', function () {
+                console.log('Drag Leave');
+                this.classList.remove('dashed');
+
+            })
+            whiteBox.addEventListener('drop', function () {
+                console.log('Drop');
+                this.append(imgBox);
+
+            })
+        }
+    </script>
+</body>
+
+</html>
