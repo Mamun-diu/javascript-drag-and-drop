@@ -36,7 +36,7 @@ for (let i = 0; i < array.length; i++) {
         console.log('drag start');
         
     });
-    numberOne.addEventListener('touchstart',function(e){
+    numberOne.addEventListener('touchmove',function(e){
         e.preventDefault();
         check = "1";  
         console.log('Touch start');
@@ -49,7 +49,7 @@ for (let i = 0; i < array.length; i++) {
     numberTwo.addEventListener('dragstart',function(){
         check = "2";   
     });
-    numberTwo.addEventListener('touchstart',function(){
+    numberTwo.addEventListener('touchmove',function(){
         check = "2";   
     });
     numberThree.addEventListener('dragstart',function(){
