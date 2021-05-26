@@ -32,16 +32,24 @@ for (let i = 0; i < array.length; i++) {
 
 
     numberOne.addEventListener('dragstart',function(){
-        // setTimeout(() => {
-        //     this.classList.add('hide');
-        // }, 1);
-        check = "1";   
+        check = "1";    
+        console.log('drag start');
+        
+    });
+    numberOne.addEventListener('touchstart',function(e){
+        e.preventDefault();
+        check = "1";  
+        console.log('Touch start');
+          
     });
     numberOne.addEventListener('dragend',function(){
         console.log('Drag End');
         
     })
     numberTwo.addEventListener('dragstart',function(){
+        check = "2";   
+    });
+    numberTwo.addEventListener('touchstart',function(){
         check = "2";   
     });
     numberThree.addEventListener('dragstart',function(){
